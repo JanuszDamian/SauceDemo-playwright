@@ -1,0 +1,21 @@
+{
+  "name": "corab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests:chrome": "playwright test --config=playwright.config.ts --project=QA-Chromium --reporter=html",
+    "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox --reporter=html",
+    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit --reporter=html"
+  },
+  "author": "JDD",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.57.0",
+    "otplib": "^12.0.1",
+    "prettier": "^3.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
+  }
+}
