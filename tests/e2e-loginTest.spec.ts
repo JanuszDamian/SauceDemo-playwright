@@ -4,9 +4,6 @@ import { ProductListPage } from '../page-objects/ProductListPage'
 import { UserDataType } from '../data/types/userDataTypes'
 import userDataJson from '../data/userData.json'
 
-test.use({ storageState: 'auth.json'})
-
-
   //user=handlowiec
 test.describe.parallel('Login tests', () => {
     let loginPage: LoginPage

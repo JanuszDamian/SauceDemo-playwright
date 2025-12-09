@@ -15,7 +15,7 @@ export class LoginPage {
         this.page = page
         this.userNameInput = page.locator("input[id='user-name']")
         this.userPasswordInput = page.locator("input[id='password']")
-        this.loginButton = page.locator("id='login-button'")
+        this.loginButton = page.locator("input[id='login-button']")
         this.errorNotification = page.locator("h3[data-test='error']")
     }
     // Define page methods

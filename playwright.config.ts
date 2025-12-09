@@ -3,7 +3,6 @@ import { PlaywrightTestConfig, defineConfig, devices } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
     testDir: './tests',
-    globalSetup: './global-setup',
     timeout: 600000,
     retries: 0,
     use: {

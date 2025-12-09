@@ -9,7 +9,7 @@ export class ProductListPage {
     // Init selectros using constructor
     constructor(page: Page) {
         this.page = page
-        this.productContainerDiv = page.locator("div[id='inventory_container']")
+        this.productContainerDiv = page.locator("div[id='inventory_container'][data-test='inventory-container']")
 
     }
     // Define page methods
