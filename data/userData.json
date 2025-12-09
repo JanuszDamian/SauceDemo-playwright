@@ -16,5 +16,8 @@
     },
     {
         "userName": "visual_user"
+    },
+    {
+        "userName": "wrong_user"
     }
 ]
