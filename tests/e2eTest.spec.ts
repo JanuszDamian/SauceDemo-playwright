@@ -18,10 +18,10 @@ test.describe.parallel('Login tests', () => {
     const userRecord0 = UserDataType.fromUserDataJson(userDataJson[0])
     const typeOfSort2 = ProductListDataType.fromProductListDataJson(productListDataJson[2])
     
-    test.only('@E2E - added product to cart', async ({page}, testInfo) => {
+    test('@E2E - added product to cart', async ({page}, testInfo) => {
         loginPage = new LoginPage(page, logger)
         productListPage = new ProductListPage(page, logger)
-        cartPage = new CartPage(page)
+        cartPage = new CartPage(page, logger)
 
         await testInfo.attach("Logi scenariusza", {
         body: logger.getLogs(),

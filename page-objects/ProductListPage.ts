@@ -56,7 +56,8 @@ export class ProductListPage {
         for(let i=1; i<pricesInt.length; i++)
             {
                 expect(pricesInt[i]).toBeGreaterThanOrEqual(pricesInt[i-1])
-            }            
+            }
+        this.logger.log('Sorting check Low to High price, completed successfully')           
     }
 
     async assertSortHighToLowPrice() {
@@ -69,7 +70,8 @@ export class ProductListPage {
         for(let i=1; i<pricesInt.length; i++)
             {
                 expect(pricesInt[i]).toBeLessThanOrEqual(pricesInt[i-1])
-            }            
+            }    
+        this.logger.log('Sorting check Hight to low price, completed successfully')            
     }
 
     async assertSortAToZName() {
@@ -81,6 +83,7 @@ export class ProductListPage {
             {
                 expect(nameText[i].localeCompare(nameText[i-1])).toBeGreaterThanOrEqual(0)
             }            
+        this.logger.log('Sorting check A to Z, completed successfully')    
     }
 
     async assertSortZToAName() {
@@ -92,19 +95,17 @@ export class ProductListPage {
             {
                 expect(nameText[i].localeCompare(nameText[i-1])).toBeLessThanOrEqual(0)
             }            
+        this.logger.log('Sorting check Z to A, completed successfully')    
     }
 
     async addProductToCart(numberOfProductsToBuy: number, numberOfProductsToSell: number) {
         await this.productPriceDiv.nth(0).waitFor({state: 'visible'})
 
         let productInCartPricesInt = 0
-        if(numberOfProductsToBuy>numberOfProductsToSell) {
-            console.log("Number of products to buy is higher than Number of products to sell")
-        }
 
         for(let i = 0; i< numberOfProductsToSell; i++) {
             if(numberOfProductsToBuy>numberOfProductsToSell) {
-            console.log("Number of products to buy is higher than Number of products to sell")
+            this.logger.log('Number of products to buy is higher than Number of products to sell')
             break
         }
 
@@ -118,6 +119,7 @@ export class ProductListPage {
         const countOfProductInCartStr = await this.shoppingCartBadge.innerText()
         const countOfProductInCartInt = Number(countOfProductInCartStr)
         expect(countOfProductInCartInt).toBe(numberOfProductsToBuy)
+        this.logger.log('Products have been added to the cart.')    
 
         return {
             productInCartPricesInt,
@@ -128,5 +130,6 @@ export class ProductListPage {
     async goToCart() {
         await this.shoppingCartIcon.waitFor({state: 'visible'})
         await this.shoppingCartIcon.click()
+        this.logger.log('The shopping cart icon has been clicked') 
     }
 }
