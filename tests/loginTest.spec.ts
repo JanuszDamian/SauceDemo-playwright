@@ -43,7 +43,6 @@ test.describe.parallel('Login tests', () => {
         await loginPage.fillLoginForm(userRecord6, "incorrectPassword2")
         await loginPage.assertErrorNotyfication()
     })
-
 })
 
 
