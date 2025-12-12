@@ -5,13 +5,11 @@ import { UserDataType } from '../data/types/userDataTypes'
 import userDataJson from '../data/userData.json'
 import { ProductListDataType } from '../data/types/productListDataTypes'
 import productListDataJson from '../data/productListData.json'
-import { Logger } from '../utils/logger'
 
   //user=handlowiec
 test.describe.parallel('Login tests', () => {
     let loginPage: LoginPage
     let productListPage: ProductListPage
-    let logger = new Logger()
 
     const userRecord0 = UserDataType.fromUserDataJson(userDataJson[0])
     const typeOfSort0 = ProductListDataType.fromProductListDataJson(productListDataJson[0])
@@ -19,14 +17,9 @@ test.describe.parallel('Login tests', () => {
     const typeOfSort2 = ProductListDataType.fromProductListDataJson(productListDataJson[2])
     const typeOfSort3 = ProductListDataType.fromProductListDataJson(productListDataJson[3])
     
-    test('@Sorting - price low to high', async ({page}, testInfo) => {
-        loginPage = new LoginPage(page, logger)
-        productListPage = new ProductListPage(page, logger)
-
-        await testInfo.attach("Logi scenariusza", {
-        body: logger.getLogs(),
-        contentType: "text/plain"
-    })
+    test('@Sorting - price low to high', async ({page}) => {
+        loginPage = new LoginPage(page)
+        productListPage = new ProductListPage(page)
 
         await loginPage.visit()
         await loginPage.fillLoginForm(userRecord0, "secret_sauce")
@@ -36,13 +29,9 @@ test.describe.parallel('Login tests', () => {
     })
 
     test('@Sorting - price high to low', async ({page}, testInfo) => {
-        loginPage = new LoginPage(page, logger)
-        productListPage = new ProductListPage(page, logger)
+        loginPage = new LoginPage(page)
+        productListPage = new ProductListPage(page)
 
-        await testInfo.attach("Logi scenariusza", {
-        body: logger.getLogs(),
-        contentType: "text/plain"
-    })
         await loginPage.visit()
         await loginPage.fillLoginForm(userRecord0, "secret_sauce")
         await productListPage.loginAssert()
@@ -51,13 +40,9 @@ test.describe.parallel('Login tests', () => {
     })
 
     test('@Sorting - name - a to z', async ({page}, testInfo) => {
-        loginPage = new LoginPage(page, logger)
-        productListPage = new ProductListPage(page, logger)
+        loginPage = new LoginPage(page)
+        productListPage = new ProductListPage(page)
 
-        await testInfo.attach("Logi scenariusza", {
-        body: logger.getLogs(),
-        contentType: "text/plain"
-    })
         await loginPage.visit()
         await loginPage.fillLoginForm(userRecord0, "secret_sauce")
         await productListPage.loginAssert()
@@ -65,14 +50,10 @@ test.describe.parallel('Login tests', () => {
         await productListPage.assertSortAToZName()
     })
 
-    test('@Sorting - name - z to a', async ({page}, testInfo) => {
-        loginPage = new LoginPage(page, logger)
-        productListPage = new ProductListPage(page, logger)
+    test('@Sorting - name - z to a', async ({page}) => {
+        loginPage = new LoginPage(page)
+        productListPage = new ProductListPage(page)
 
-                await testInfo.attach("Logi scenariusza", {
-        body: logger.getLogs(),
-        contentType: "text/plain"
-    })
         await loginPage.visit()
         await loginPage.fillLoginForm(userRecord0, "secret_sauce")
         await productListPage.loginAssert()

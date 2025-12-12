@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { UserDataType } from '../data/types/userDataTypes'
-import { Logger } from '../utils/logger'
 
 export class LoginPage {
     // Define Selectors
@@ -11,7 +10,7 @@ export class LoginPage {
     readonly errorNotification: Locator
 
     // Init selectros using constructor
-    constructor(page: Page, private logger: Logger) {
+    constructor(page: Page) {
         this.page = page
         this.userNameInput = page.locator("input[id='user-name']")
         this.userPasswordInput = page.locator("input[id='password']")
@@ -22,7 +21,7 @@ export class LoginPage {
     async visit() {
         await this.page.goto('')
         await this.userNameInput.waitFor({state: 'visible'})
-        this.logger.log('I am on the saucedemo login page.')
+        console.log('I am on the saucedemo login page.')
     }
 
     async fillLoginForm(data: UserDataType, password: string) {
@@ -30,16 +29,16 @@ export class LoginPage {
         await this.userNameInput.fill(data.userName)
         await this.userPasswordInput.waitFor({state: 'visible'})
         await this.userPasswordInput.fill(password)
-        this.logger.log('I filled out the login form')
+        console.log(`I filled out the login form with ${data.userName}`)
         await this.loginButton.waitFor({state: 'visible'})
         await this.loginButton.click()
-        this.logger.log('I clicked the login button')
+        console.log('I clicked the login button')
     }
 
     async assertErrorNotyfication() {
         await this.errorNotification.waitFor({state: 'visible'})
         expect(this.errorNotification).toHaveText('Epic sadface: Username and password do not match any user in this service')
-        this.logger.log('Notification about incorrect login or password.')
+        console.log('Notification about incorrect login or password.')
     }
 
 }
