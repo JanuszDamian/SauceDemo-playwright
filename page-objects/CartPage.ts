@@ -18,7 +18,7 @@ export class CartPage {
         this.productInCartPriceDiv = page.locator("div[data-test='inventory-item']>>div[data-test='inventory-item-price']")
         this.checkoutButton = page.locator("button[data-test='checkout']")
         this.continueShoppingButton = page.locator("button[data-test='continue-shopping']")
-        this.removeProductButton = page.locator("div[class='cart_item_label']>>div[data-test='inventory-item-price']>>button")
+        this.removeProductButton = page.locator("div[data-test='cart-list']>>div[class='item_pricebar']>>button")
     }
     // Define page methods
 
@@ -53,6 +53,37 @@ export class CartPage {
         }
         expect(sumOfPricesInCartInt).toBe(priceSumFromProductList)
         console.log(`The sum of prices in the product list is: ${sumOfPricesInCartInt}`)
+    }
+
+        async SumOfPricesInCartV2(numberOfProductInCart: number) {
+
+        let sumOfPricesInCartInt = 0
+
+        for(let i = 0; i< numberOfProductInCart; i++) {
+
+            let priceInCartText = await this.productInCartPriceDiv.nth(i).innerText()
+            let priceInCartInt = Number(priceInCartText.replace("$", "").trim())
+
+            sumOfPricesInCartInt += priceInCartInt
+        }
+        console.log(`The sum of prices in the product list is: ${sumOfPricesInCartInt}`)
+        return sumOfPricesInCartInt
+    }
+
+    async removeProductFromCart(numberOfProductToRemoveFromCart: number, numberOfProductInCart: number) {
+         if (numberOfProductToRemoveFromCart > numberOfProductInCart) {
+            throw new Error(`Cannot remove ${numberOfProductToRemoveFromCart} products from cart with only ${numberOfProductInCart}`
+            );
+        }
+
+        if (numberOfProductToRemoveFromCart<=numberOfProductInCart) {
+            for(let i=0; i< numberOfProductToRemoveFromCart; i++) {
+                await this.removeProductButton.nth(i).click()
+            }
+            console.log(`${numberOfProductToRemoveFromCart} products have been removed from your cart`)
+        }
+
+        return numberOfProductToRemoveFromCart
     }
 
     async goToCheckoutPage() {
