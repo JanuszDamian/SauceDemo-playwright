@@ -138,7 +138,7 @@ export class ProductListPage {
 
         }
         else {
-            console.log(`Error - the number of products to be removed: ${numberOfProductsToRemove}, is greater than the number of products added: ${numberOfProductsToAddToCart}`)
+            throw new Error(`Error - the number of products to be removed: ${numberOfProductsToRemove}, is greater than the number of products added: ${numberOfProductsToAddToCart}`)
         }
         return numberOfProductsToRemove
     }

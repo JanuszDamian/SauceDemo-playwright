@@ -74,9 +74,8 @@ export class CartPage {
          if (numberOfProductToRemoveFromCart > numberOfProductInCart) {
             throw new Error(`Cannot remove ${numberOfProductToRemoveFromCart} products from cart with only ${numberOfProductInCart}`
             );
-        }
-
-        if (numberOfProductToRemoveFromCart<=numberOfProductInCart) {
+        } 
+        else {
             for(let i=0; i< numberOfProductToRemoveFromCart; i++) {
                 await this.removeProductButton.nth(i).click()
             }
