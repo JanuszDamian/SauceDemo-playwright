@@ -17,7 +17,7 @@ test.describe.parallel('Login tests', () => {
     const typeOfSort2 = ProductListDataType.fromProductListDataJson(productListDataJson[2])
     const typeOfSort3 = ProductListDataType.fromProductListDataJson(productListDataJson[3])
     
-    test('@Sorting - price low to high', async ({page}) => {
+    test.only('@Sorting - price low to high', async ({page}) => {
         loginPage = new LoginPage(page)
         productListPage = new ProductListPage(page)
 
