@@ -92,7 +92,7 @@ test.describe.parallel('Login tests', () => {
         await productListPage.assertCartBadgeIsNotVisible()
     })
 
-    test.only('@E2E - added product to cart, remove product from product list, remove products from Cart, assertValue and back to HomePage', async ({page}) => {
+    test('@E2E - added product to cart, remove product from product list, remove products from Cart, assertValue and back to HomePage', async ({page}) => {
         loginPage = new LoginPage(page)
         productListPage = new ProductListPage(page)
         cartPage = new CartPage(page)
