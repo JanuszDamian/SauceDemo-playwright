@@ -8,6 +8,7 @@ export class CartPage {
     readonly productInCartPriceDiv: Locator
     readonly checkoutButton: Locator
     readonly continueShoppingButton: Locator
+    readonly removeProductButton: Locator
 
     // Init selectros using constructor
     constructor(page: Page) {
@@ -17,6 +18,7 @@ export class CartPage {
         this.productInCartPriceDiv = page.locator("div[data-test='inventory-item']>>div[data-test='inventory-item-price']")
         this.checkoutButton = page.locator("button[data-test='checkout']")
         this.continueShoppingButton = page.locator("button[data-test='continue-shopping']")
+        this.removeProductButton = page.locator("div[class='cart_item_label']>>div[data-test='inventory-item-price']>>button")
     }
     // Define page methods
 

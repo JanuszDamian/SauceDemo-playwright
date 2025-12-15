@@ -99,33 +99,74 @@ export class ProductListPage {
         console.log('Sorting check Z to A, completed successfully')    
     }
 
-    async addProductToCart(numberOfProductsToBuy: number, numberOfProductsToSell: number) {
+    async addProductToCart(numberOfProductsToAddToCart: number, numberOfProductsToSell: number) {
+        await this.productPriceDiv.nth(0).waitFor({state: 'visible'})
+
+
+        for(let i = 0; i< numberOfProductsToAddToCart; i++) {
+
+            if(numberOfProductsToAddToCart>numberOfProductsToSell) {
+            console.log('Number of products to buy is higher than Number of products to sell')
+            break
+        }
+            await this.addToCartButton.nth(i).click()
+        }
+
+        const countOfProductInCartStr = await this.shoppingCartBadge.innerText()
+        const countOfProductInCartInt = Number(countOfProductInCartStr)
+        expect(countOfProductInCartInt).toBe(numberOfProductsToAddToCart)
+        console.log(`${numberOfProductsToAddToCart} products have been added to cart `)    
+
+        return numberOfProductsToAddToCart
+        
+    }
+
+    async removeProductFromCart(numberOfProductsToRemove: number, numberOfProductsToAddToCart: number) {
+        await this.productPriceDiv.nth(0).waitFor({state: 'visible'})
+
+        if(numberOfProductsToRemove <= numberOfProductsToAddToCart) {
+            for(let i = 0; i< numberOfProductsToRemove; i++) {
+                const buttontext = await (await this.addToCartButton.nth(i).innerText()).trim()
+                if (buttontext === 'Remove') {
+                    await this.addToCartButton.nth(i).click()
+                 }
+                else {
+                    console.log('No products added to cart.')
+                 }
+            }
+        console.log(`${numberOfProductsToRemove} products have been removed from cart`)
+
+        }
+        else {
+            console.log(`Error - the number of products to be removed: ${numberOfProductsToRemove}, is greater than the number of products added: ${numberOfProductsToAddToCart}`)
+        }
+        return numberOfProductsToRemove
+    }
+
+    async assertAddedProductsToCart(numberOfProductsToSell: number, numberOfProductsToAddToCart: number, numberOfProductsToRemove: number) {
         await this.productPriceDiv.nth(0).waitFor({state: 'visible'})
 
         let productInCartPricesInt = 0
 
         for(let i = 0; i< numberOfProductsToSell; i++) {
-            if(numberOfProductsToBuy>numberOfProductsToSell) {
-            console.log('Number of products to buy is higher than Number of products to sell')
-            break
-        }
+            const buttontext = await (await this.addToCartButton.nth(i).innerText()).trim()
+            if (buttontext === 'Remove') {
+                let pricesText = await this.productPriceDiv.nth(i).innerText()
+                let pricesInt = Number(pricesText.replace("$", "").trim())
 
-            let pricesText = await this.productPriceDiv.nth(i).innerText()
-            let pricesInt = Number(pricesText.replace("$", "").trim())
-
-            productInCartPricesInt += pricesInt
-            await this.addToCartButton.nth(i).click()
+                productInCartPricesInt += pricesInt
+            }    
         }
         console.log(`The sum of prices in the product list is: ${productInCartPricesInt}`)
-
+        const numberOfProductsInCart = numberOfProductsToAddToCart - numberOfProductsToRemove
         const countOfProductInCartStr = await this.shoppingCartBadge.innerText()
         const countOfProductInCartInt = Number(countOfProductInCartStr)
-        expect(countOfProductInCartInt).toBe(numberOfProductsToBuy)
-        console.log(`${numberOfProductsToBuy} products have been added to cart `)    
+        expect(countOfProductInCartInt).toBe(numberOfProductsInCart)
+        console.log(`${numberOfProductsInCart} products have been added to cart `)    
 
         return {
             productInCartPricesInt,
-            numberOfProductsToBuy
+            numberOfProductsInCart
         }
     }
 
@@ -133,5 +174,11 @@ export class ProductListPage {
         await this.shoppingCartIcon.waitFor({state: 'visible'})
         await this.shoppingCartIcon.click()
         console.log('The shopping cart icon has been clicked') 
+    }
+
+    async assertCartBadgeIsNotVisible() {
+        await this.productTitleSpan.waitFor({state: 'visible'})
+        expect(this.shoppingCartBadge).not.toBeVisible()
+        console.log('The cart is empty')
     }
 }
