@@ -11,6 +11,7 @@ export class ProductListPage {
     readonly shoppingCartIcon: Locator
     readonly shoppingCartBadge: Locator
     readonly productTitleSpan: Locator
+    readonly onesieImg: Locator
 
     // Init selectros using constructor
     constructor(page: Page) {
@@ -23,6 +24,7 @@ export class ProductListPage {
         this.shoppingCartIcon = page.locator("div[id='shopping_cart_container']")
         this.shoppingCartBadge = page.locator("div[id='shopping_cart_container']>>span[data-test='shopping-cart-badge']")
         this.productTitleSpan = page.locator("span[data-test='title']")
+        this.onesieImg = page.locator("img[data-test='inventory-item-sauce-labs-onesie-img']")
     }
     // Define page methods
 
@@ -180,5 +182,14 @@ export class ProductListPage {
         await this.productTitleSpan.waitFor({state: 'visible'})
         expect(this.shoppingCartBadge).not.toBeVisible()
         console.log('The cart is empty')
+    }
+
+    async snapshotProductList() {
+        await this.page.waitForLoadState()
+        await this.page.waitForFunction(() => {
+            const images = Array.from(document.images);
+            return images.every(img => img.complete && img.naturalWidth > 0)
+        })
+        expect(await this.page.screenshot()).toMatchSnapshot('productList.png')
     }
 }

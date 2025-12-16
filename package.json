@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "tests:chrome": "playwright test --config=playwright.config.ts --project=SD-Chromium --reporter=html",
-    "tests:firefox": "playwright test --config=playwright.config.ts --project=SD-Firefox --reporter=html"
+    "tests:firefox": "playwright test --config=playwright.config.ts --project=SD-Firefox --reporter=html",
+    "tests:webkit": "playwright test --config=playwright.config.ts --project=SD-Webkit --reporter=html",
+    "tests:visual:chrome": "playwright test --config=visual.config.ts --project=SD-Chromium --reporter=html",
+    "tests:visual:firefox": "playwright test --config=visual.config.ts --project=SD-Firefox --reporter=html"
   },
   "author": "JDD",
   "license": "ISC",
