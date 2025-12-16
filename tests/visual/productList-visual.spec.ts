@@ -17,7 +17,7 @@ test.describe.parallel('Visual test ProductListPage', () => {
         productListPage = new ProductListPage(page)
 
         await loginPage.visit()
-        await loginPage.fillLoginForm(userRecord0, "secret_sauce")
+        await loginPage.fillLoginForm(userRecord2, "secret_sauce")
         await productListPage.snapshotProductList()
     })
 })
