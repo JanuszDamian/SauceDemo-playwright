@@ -95,6 +95,16 @@ export class CartPage {
         await this.continueShoppingButton.waitFor({state: 'visible'})
         await this.continueShoppingButton.click()
     }
+
+        async snapshotCartPageList() {
+        await this.page.waitForLoadState()
+        await this.page.waitForFunction(() => {
+            const images = Array.from(document.images);
+            return images.every(img => img.complete && img.naturalWidth > 0)
+        })
+        expect(await this.page.screenshot()).toMatchSnapshot('cartPage.png')
+        console.log('CartPage Snapshot has been taken.')
+    }
         
 
 

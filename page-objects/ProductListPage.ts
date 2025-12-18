@@ -191,6 +191,6 @@ export class ProductListPage {
             return images.every(img => img.complete && img.naturalWidth > 0)
         })
         expect(await this.page.screenshot()).toMatchSnapshot('productList.png')
-        console.log('Snapshot has been taken.')
+        console.log('ProductListPage Snapshot has been taken.')
     }
 }
