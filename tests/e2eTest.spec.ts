@@ -13,7 +13,7 @@ import { CheckoutOverviewPage } from '../page-objects/CheckoutOverviewPage'
 import { CheckoutCompletePage } from '../page-objects/CheckoutCompletePage'
 
   //user=handlowiec
-test.describe.parallel('Login tests', () => {
+test.describe.parallel('E2E tests', () => {
     let loginPage: LoginPage
     let productListPage: ProductListPage
     let cartPage: CartPage

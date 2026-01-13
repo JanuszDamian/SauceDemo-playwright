@@ -7,7 +7,7 @@ import { ProductListDataType } from '../data/types/productListDataTypes'
 import productListDataJson from '../data/productListData.json'
 
   //user=handlowiec
-test.describe.parallel('Login tests', () => {
+test.describe.parallel('Sorting tests', () => {
     let loginPage: LoginPage
     let productListPage: ProductListPage
 
@@ -17,7 +17,7 @@ test.describe.parallel('Login tests', () => {
     const typeOfSort2 = ProductListDataType.fromProductListDataJson(productListDataJson[2])
     const typeOfSort3 = ProductListDataType.fromProductListDataJson(productListDataJson[3])
     
-    test.only('@Sorting - price low to high', async ({page}) => {
+    test('@Sorting - price low to high', async ({page}) => {
         loginPage = new LoginPage(page)
         productListPage = new ProductListPage(page)
 

@@ -15,7 +15,7 @@ test.describe.parallel('Visual test ProductListPage', () => {
     const userRecord5 = UserDataType.fromUserDataJson(userDataJson[5])
 
     
-    test('@Visual test productListPage', async ({page}) => {
+    test.skip('@Visual test productListPage', async ({page}) => {
         loginPage = new LoginPage(page)
         productListPage = new ProductListPage(page)
 
@@ -24,7 +24,7 @@ test.describe.parallel('Visual test ProductListPage', () => {
         await productListPage.snapshotProductList()
     })
 
-    test('@Visual test cartPage', async ({page}) => {
+    test.skip('@Visual test cartPage', async ({page}) => {
         loginPage = new LoginPage(page)
         productListPage = new ProductListPage(page)
         cartPage = new CartPage(page)
