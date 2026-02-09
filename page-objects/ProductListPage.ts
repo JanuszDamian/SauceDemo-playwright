@@ -45,19 +45,16 @@ export class ProductListPage {
   async loginAssert() {
     await this.productTitleSpan.waitFor({ state: 'visible' })
     expect(this.productTitleSpan).toHaveText('Products')
-    console.log('I am on the saucedemo product list page.')
   }
 
   async productSorting(typeOfSort: string) {
     await this.productSortSelect.waitFor({ state: 'visible' })
     await this.productSortSelect.selectOption(typeOfSort)
-    console.log('The products have been sorted.')
   }
 
   async countProducts() {
     await this.productContainerDiv.waitFor({ state: 'visible' })
     const numberOfProducts = await this.productPriceDiv.count()
-    console.log('The products have been counted.')
 
     return numberOfProducts
   }
@@ -65,55 +62,45 @@ export class ProductListPage {
   async assertSortLowToHighPrice() {
     await this.productPriceDiv.nth(0).waitFor({ state: 'visible' })
     const pricesText = await this.productPriceDiv.allInnerTexts()
-    console.log(`Pobrany tekst cen po sortowaniu Low to High: '${pricesText}'`)
     const pricesInt = pricesText.map((text) =>
       Number(text.replace('$', '').trim()),
     )
-    console.log(`Ceny po konwersji z tekstu na int: '${pricesInt}'`)
 
     for (let i = 1; i < pricesInt.length; i++) {
       expect(pricesInt[i]).toBeGreaterThanOrEqual(pricesInt[i - 1])
     }
-    console.log('Sorting check Low to High price, completed successfully')
   }
 
   async assertSortHighToLowPrice() {
     await this.productPriceDiv.nth(0).waitFor({ state: 'visible' })
     const pricesText = await this.productPriceDiv.allInnerTexts()
-    console.log(`Pobrany tekst cen po sortowaniu High to Low: '${pricesText}'`)
     const pricesInt = pricesText.map((text) =>
       Number(text.replace('$', '').trim()),
     )
-    console.log(`Ceny po konwersji z tekstu na int: '${pricesInt}'`)
 
     for (let i = 1; i < pricesInt.length; i++) {
       expect(pricesInt[i]).toBeLessThanOrEqual(pricesInt[i - 1])
     }
-    console.log('Sorting check Hight to low price, completed successfully')
   }
 
   async assertSortAToZName() {
     await this.productNameDiv.nth(0).waitFor({ state: 'visible' })
     const nameText = await this.productNameDiv.allInnerTexts()
-    console.log(`Pobrane nazwy produktów po sortowaniu A to Z: '${nameText}'`)
 
     for (let i = 1; i < nameText.length; i++) {
       expect(nameText[i].localeCompare(nameText[i - 1])).toBeGreaterThanOrEqual(
         0,
       )
     }
-    console.log('Sorting check A to Z, completed successfully')
   }
 
   async assertSortZToAName() {
     await this.productNameDiv.nth(0).waitFor({ state: 'visible' })
     const nameText = await this.productNameDiv.allInnerTexts()
-    console.log(`Pobrane nazwy produktów po sortowaniu Z to A: '${nameText}'`)
 
     for (let i = 1; i < nameText.length; i++) {
       expect(nameText[i].localeCompare(nameText[i - 1])).toBeLessThanOrEqual(0)
     }
-    console.log('Sorting check Z to A, completed successfully')
   }
 
   async addProductToCart(
@@ -209,13 +196,11 @@ export class ProductListPage {
   async goToCart() {
     await this.shoppingCartIcon.waitFor({ state: 'visible' })
     await this.shoppingCartIcon.click()
-    console.log('The shopping cart icon has been clicked')
   }
 
   async assertCartBadgeIsNotVisible() {
     await this.productTitleSpan.waitFor({ state: 'visible' })
     expect(this.shoppingCartBadge).not.toBeVisible()
-    console.log('The cart is empty')
   }
 
   async snapshotProductList() {
@@ -225,6 +210,5 @@ export class ProductListPage {
       return images.every((img) => img.complete && img.naturalWidth > 0)
     })
     expect(await this.page.screenshot()).toMatchSnapshot('productList.png')
-    console.log('ProductListPage Snapshot has been taken.')
   }
 }

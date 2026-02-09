@@ -19,11 +19,7 @@ export class CheckoutCompletePage {
   async checkoutCompletePageAssertTitle() {
     await this.checkoutCompletePageTitle.waitFor({ state: 'visible' })
     expect(this.checkoutCompletePageTitle).toHaveText('Checkout: Complete!')
-    console.log('I am on the saucedemo checkout complete page.')
     expect(this.completeHeader).toHaveText('Thank you for your order!')
-    console.log(
-      'There is a notification on the website: Thank you for your order!',
-    )
   }
 
   async backToHome() {

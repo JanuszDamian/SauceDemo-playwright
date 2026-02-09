@@ -21,7 +21,6 @@ export class LoginPage {
   async visit() {
     await this.page.goto('')
     await this.userNameInput.waitFor({ state: 'visible' })
-    console.log('I am on the saucedemo login page.')
   }
 
   async fillLoginForm(data: UserDataType, password: string) {
@@ -29,10 +28,8 @@ export class LoginPage {
     await this.userNameInput.fill(data.userName)
     await this.userPasswordInput.waitFor({ state: 'visible' })
     await this.userPasswordInput.fill(password)
-    console.log(`I filled out the login form with ${data.userName}`)
     await this.loginButton.waitFor({ state: 'visible' })
     await this.loginButton.click()
-    console.log('I clicked the login button')
   }
 
   async assertErrorNotyfication() {
@@ -40,6 +37,5 @@ export class LoginPage {
     expect(this.errorNotification).toHaveText(
       'Epic sadface: Username and password do not match any user in this service',
     )
-    console.log('Notification about incorrect login or password.')
   }
 }

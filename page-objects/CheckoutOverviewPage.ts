@@ -25,7 +25,6 @@ export class CheckoutOverviewPage {
   async checkoutOverviewPageAssertTitle() {
     await this.checkoutOverviewPageTitle.waitFor({ state: 'visible' })
     expect(this.checkoutOverviewPageTitle).toHaveText('Checkout: Overview')
-    console.log('I am on the saucedemo checkout overview page.')
   }
 
   async assertPrices(totalPriceFromProductList: number) {
@@ -61,6 +60,5 @@ export class CheckoutOverviewPage {
   async finishOrder() {
     await this.finishButton.waitFor({ state: 'visible' })
     await this.finishButton.click()
-    console.log('Finish Button has been pressed.')
   }
 }

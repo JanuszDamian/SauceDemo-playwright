@@ -31,13 +31,11 @@ export class CartPage {
   async cartPageAssert() {
     await this.titleSpan.waitFor({ state: 'visible' })
     expect(this.titleSpan).toHaveText('Your Cart')
-    console.log('Checking the entry to the cartPage completed successfully.')
   }
 
   async countProductsInCart() {
     await this.productDiv.nth(0).waitFor({ state: 'visible' })
     const numberOfProductsInCartInt = await this.productDiv.count()
-    console.log('Counting products in the cart, completed successfully.')
 
     return numberOfProductsInCartInt
   }
@@ -47,9 +45,6 @@ export class CartPage {
     numberOfProductsInProductList: number,
   ) {
     expect(numberOfProductsInCart).toBe(numberOfProductsInProductList)
-    console.log(
-      'checking the number of products in the cart with the number of products added to the cart was completed successfully',
-    )
   }
 
   async assertSumOfPricesInCart(
@@ -108,7 +103,6 @@ export class CartPage {
   async goToCheckoutPage() {
     await this.checkoutButton.waitFor({ state: 'visible' })
     await this.checkoutButton.click()
-    console.log('Checkout Button has been pressed')
   }
 
   async goToProductList() {
@@ -123,6 +117,5 @@ export class CartPage {
       return images.every((img) => img.complete && img.naturalWidth > 0)
     })
     expect(await this.page.screenshot()).toMatchSnapshot('cartPage.png')
-    console.log('CartPage Snapshot has been taken.')
   }
 }

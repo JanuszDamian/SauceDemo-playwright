@@ -16,8 +16,11 @@ test.describe.parallel('Login tests', () => {
     loginPage = new LoginPage(page)
     productListPage = new ProductListPage(page)
     await loginPage.visit()
+    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord0, 'secret_sauce')
+    console.log('I completed the login form and clicked the login button')
     await productListPage.loginAssert()
+    console.log('I am on the saucedemo product list page.')
   })
 
   test('@Login - correct User, incorrect password', async ({ page }) => {
@@ -25,8 +28,11 @@ test.describe.parallel('Login tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
+    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord0, 'incorrectPassword')
+    console.log('I completed the login form and clicked the login button')
     await loginPage.assertErrorNotyfication()
+    console.log('Notification about incorrect login or password.')
   })
 
   test('@Login - incorrect User, correct password', async ({ page }) => {
@@ -34,8 +40,11 @@ test.describe.parallel('Login tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
+    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord6, 'secret_sauce')
+    console.log('I completed the login form and clicked the login button')
     await loginPage.assertErrorNotyfication()
+    console.log('Notification about incorrect login or password.')
   })
 
   test('@Login - incorrect User, incorrect password', async ({ page }) => {
@@ -43,7 +52,10 @@ test.describe.parallel('Login tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
+    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord6, 'incorrectPassword2')
+    console.log('I completed the login form and clicked the login button')
     await loginPage.assertErrorNotyfication()
+    console.log('Notification about incorrect login or password.')
   })
 })

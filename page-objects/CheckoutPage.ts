@@ -26,7 +26,6 @@ export class CheckoutPage {
   async checkoutPageAssertTitle() {
     await this.checkoutPageTitle.waitFor({ state: 'visible' })
     expect(this.checkoutPageTitle).toHaveText('Checkout: Your Information')
-    console.log('I am on the saucedemo checkout page.')
   }
 
   async fillCheckoutForm(data: CheckoutDataType) {
@@ -34,13 +33,9 @@ export class CheckoutPage {
     await this.firstNameInput.fill(data.firstName)
     await this.lastNameInput.fill(data.lastName)
     await this.postalCodeInput.fill(data.postalCode)
-    console.log(
-      `Checkout form has been filled valu: ${data.firstName}, ${data.lastName}, ${data.postalCode}`,
-    )
   }
 
   async goToCheckoutOverviewPage() {
     await this.continueButton.click()
-    console.log('Continue Button has been pressed.')
   }
 }

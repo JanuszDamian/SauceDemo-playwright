@@ -20,8 +20,11 @@ test.describe.parallel('Visual test ProductListPage', () => {
         productListPage = new ProductListPage(page)
 
         await loginPage.visit()
+        console.log('I am on the saucedemo login page.')
         await loginPage.fillLoginForm(userRecord2, "secret_sauce")
+        console.log('I completed the login form and clicked the login button')
         await productListPage.snapshotProductList()
+        console.log('ProductListPage Snapshot has been taken.')
     })
 
     test.skip('@Visual test cartPage', async ({page}) => {
@@ -30,10 +33,14 @@ test.describe.parallel('Visual test ProductListPage', () => {
         cartPage = new CartPage(page)
 
         await loginPage.visit()
+        console.log('I am on the saucedemo login page.')
         await loginPage.fillLoginForm(userRecord5, "secret_sauce")
+        console.log('I completed the login form and clicked the login button')
         const numberOfProductsToSell = await productListPage.countProducts()
         await productListPage.addProductToCart(6, numberOfProductsToSell)
         await productListPage.goToCart()
+        console.log('The shopping cart icon has been clicked')
         await cartPage.snapshotCartPageList()
+        console.log('CartPage Snapshot has been taken.')
     })
 })
