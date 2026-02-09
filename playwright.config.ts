@@ -12,7 +12,7 @@ const config: PlaywrightTestConfig = {
         ignoreHTTPSErrors: true,
         video: 'on',
         screenshot: 'on',
-        trace: 'on'
+        trace: 'retain-on-failure'
     },
 
     projects: [
