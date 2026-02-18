@@ -60,9 +60,6 @@ export class CartPage {
       sumOfPricesInCartInt += priceInCartInt
     }
     expect(sumOfPricesInCartInt).toBe(priceSumFromProductList)
-    console.log(
-      `The sum of prices in the product list is: ${sumOfPricesInCartInt}`,
-    )
   }
 
   async SumOfPricesInCartV2(numberOfProductInCart: number) {
@@ -74,9 +71,6 @@ export class CartPage {
 
       sumOfPricesInCartInt += priceInCartInt
     }
-    console.log(
-      `The sum of prices in the product list is: ${sumOfPricesInCartInt}`,
-    )
     return sumOfPricesInCartInt
   }
 
@@ -92,9 +86,6 @@ export class CartPage {
       for (let i = 0; i < numberOfProductToRemoveFromCart; i++) {
         await this.removeProductButton.nth(i).click()
       }
-      console.log(
-        `${numberOfProductToRemoveFromCart} products have been removed from your cart`,
-      )
     }
 
     return numberOfProductToRemoveFromCart

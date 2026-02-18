@@ -30,15 +30,10 @@ test.describe.parallel('Sorting tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
-    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord0, 'secret_sauce')
-    console.log('I completed the login form and clicked the login button')
     await productListPage.loginAssert()
-    console.log('I am on the saucedemo product list page.')
     await productListPage.productSorting(typeOfSort2.typeOfSort)
-    console.log('The products have been sorted.')
     await productListPage.assertSortLowToHighPrice()
-    console.log('Sorting check Low to High price, completed successfully')
   })
 
   test('@Sorting - price high to low', async ({ page }, testInfo) => {
@@ -46,15 +41,10 @@ test.describe.parallel('Sorting tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
-    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord0, 'secret_sauce')
-    console.log('I completed the login form and clicked the login button')
     await productListPage.loginAssert()
-    console.log('I am on the saucedemo product list page.')
     await productListPage.productSorting(typeOfSort3.typeOfSort)
-    console.log('The products have been sorted.')
     await productListPage.assertSortHighToLowPrice()
-    console.log('Sorting check Hight to low price, completed successfully')
   })
 
   test('@Sorting - name - a to z', async ({ page }, testInfo) => {
@@ -62,15 +52,10 @@ test.describe.parallel('Sorting tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
-    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord0, 'secret_sauce')
-    console.log('I completed the login form and clicked the login button')
     await productListPage.loginAssert()
-    console.log('I am on the saucedemo product list page.')
     await productListPage.productSorting(typeOfSort0.typeOfSort)
-    console.log('The products have been sorted.')
     await productListPage.assertSortAToZName()
-    console.log('Sorting check A to Z, completed successfully')
   })
 
   test('@Sorting - name - z to a', async ({ page }) => {
@@ -78,14 +63,9 @@ test.describe.parallel('Sorting tests', () => {
     productListPage = new ProductListPage(page)
 
     await loginPage.visit()
-    console.log('I am on the saucedemo login page.')
     await loginPage.fillLoginForm(userRecord0, 'secret_sauce')
-    console.log('I completed the login form and clicked the login button')
     await productListPage.loginAssert()
-    console.log('I am on the saucedemo product list page.')
     await productListPage.productSorting(typeOfSort1.typeOfSort)
-    console.log('The products have been sorted.')
     await productListPage.assertSortZToAName()
-    console.log('Sorting check Z to A, completed successfully')
   })
 })

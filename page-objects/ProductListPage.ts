@@ -111,9 +111,7 @@ export class ProductListPage {
 
     for (let i = 0; i < numberOfProductsToAddToCart; i++) {
       if (numberOfProductsToAddToCart > numberOfProductsToSell) {
-        console.log(
-          'Number of products to buy is higher than Number of products to sell',
-        )
+
         break
       }
       await this.addToCartButton.nth(i).click()
@@ -122,9 +120,6 @@ export class ProductListPage {
     const countOfProductInCartStr = await this.shoppingCartBadge.innerText()
     const countOfProductInCartInt = Number(countOfProductInCartStr)
     expect(countOfProductInCartInt).toBe(numberOfProductsToAddToCart)
-    console.log(
-      `${numberOfProductsToAddToCart} products have been added to cart `,
-    )
 
     return numberOfProductsToAddToCart
   }
@@ -146,9 +141,7 @@ export class ProductListPage {
           console.log('No products added to cart.')
         }
       }
-      console.log(
-        `${numberOfProductsToRemove} products have been removed from cart`,
-      )
+
     } else {
       throw new Error(
         `Error - the number of products to be removed: ${numberOfProductsToRemove}, is greater than the number of products added: ${numberOfProductsToAddToCart}`,
@@ -177,15 +170,11 @@ export class ProductListPage {
         productInCartPricesInt += pricesInt
       }
     }
-    console.log(
-      `The sum of prices in the product list is: ${productInCartPricesInt}`,
-    )
     const numberOfProductsInCart =
       numberOfProductsToAddToCart - numberOfProductsToRemove
     const countOfProductInCartStr = await this.shoppingCartBadge.innerText()
     const countOfProductInCartInt = Number(countOfProductInCartStr)
     expect(countOfProductInCartInt).toBe(numberOfProductsInCart)
-    console.log(`${numberOfProductsInCart} products have been added to cart `)
 
     return {
       productInCartPricesInt,

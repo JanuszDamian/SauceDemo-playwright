@@ -25,6 +25,5 @@ export class CheckoutCompletePage {
   async backToHome() {
     await this.backHomeButton.waitFor({ state: 'visible' })
     await this.backHomeButton.click()
-    console.log('BackHome button has been pressed.')
   }
 }

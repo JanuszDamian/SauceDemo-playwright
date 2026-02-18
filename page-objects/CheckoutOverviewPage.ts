@@ -33,9 +33,7 @@ export class CheckoutOverviewPage {
       .replace('Item total: $', '')
       .trim()
     const subtotalValueInt = Number(parseFloat(subtotalValueText))
-    console.log(`The subtotal value was taken: '${subtotalValueInt}'`)
     expect(subtotalValueInt).toBeCloseTo(totalPriceFromProductList, 2)
-    console.log('The subtotal value was equal totalPrice from product list')
 
     const taxValueText = (await this.taxLabel.innerText())
       .replace('Tax: $', '')
@@ -43,18 +41,12 @@ export class CheckoutOverviewPage {
     const taxValueInt = Number(parseFloat(taxValueText))
 
     const sumSubTotalTaxCalc = subtotalValueInt + taxValueInt
-    console.log(
-      `The following values ​​were summed up: ${sumSubTotalTaxCalc} = ${subtotalValueInt} + ${taxValueInt}`,
-    )
 
     const totalPriceText = (await this.totalPriceLabel.innerText())
       .replace('Total: $', '')
       .trim()
     const totalPriceInt = Number(parseFloat(totalPriceText))
     expect(sumSubTotalTaxCalc).toBeCloseTo(totalPriceInt, 2)
-    console.log(
-      'The value with tax calculated and downloaded from the website is equal to',
-    )
   }
 
   async finishOrder() {
