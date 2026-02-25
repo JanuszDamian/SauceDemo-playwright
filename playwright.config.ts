@@ -15,6 +15,10 @@ const config: PlaywrightTestConfig = {
         trace: 'on'
     },
 
+    reporter: [
+            ['html', { outputFolder: 'playwright-report', open: 'never' }]
+    ],
+
     projects: [
         {
             name: 'SD-Chromium',
