@@ -51,3 +51,12 @@ Uruchomienie testów wizualnych:
 
 Jeżeli test zakończy się błędem, w formacie HTML zostaje wyświetlony raport zawierający screen, nagranie z przebiegu procesu, przyczynę wystąpienia błędu oraz w załączniku logi.
 Jeżeli wszystkie testy zakończyły się pozytywnie, raport można uruchomić korzystając z komendy: npx playwright show-report.
+
+**7. CI/CD Jenkins:**
+
+W Jenkins skonfigurowano job typu Freestyle Project, który:
+
+* Pobiera kod z repozytorium GitHub
+* Instaluje zależności
+* Uruchamia testy Playwright
+* Generuje raporty HTML
